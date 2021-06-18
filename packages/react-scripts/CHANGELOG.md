@@ -1,5 +1,9 @@
 # `backpack-react-scripts` Change Log
 
+## 9.1.3
+
+- Fixed an issue where webpack paths in SSR were not being utilised.
+
 ## 9.1.2
 
 - Updated webpack paths to include the new `@skyscanner/bpk` foundations packages.
