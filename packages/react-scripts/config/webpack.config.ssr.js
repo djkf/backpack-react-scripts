@@ -8,6 +8,10 @@
 // @remove-on-eject-end
 'use strict';
 
+// We need to disable React Refresh, because we don't use a DevServer for SSR
+// builds. The least intrusive way to do that is to use CRA's FAST_REFRESH option.
+process.env.FAST_REFRESH = 'false';
+
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -168,7 +172,7 @@ module.exports = function (webpackEnv) {
         // So adding the option here in replacement as per
         // https://github.com/webpack-contrib/css-loader/tree/v3.4.2#onlylocals
         loader: require.resolve('css-loader'),
-        options: { ...cssOptions, onlyLocals: true },
+        options: cssOptions,
       },
       {
         // Options for PostCSS as we reference these options twice
