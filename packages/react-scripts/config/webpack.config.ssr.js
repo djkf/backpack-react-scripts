@@ -168,11 +168,8 @@ module.exports = function (webpackEnv) {
       //   },
       // },
       {
-        // In v3.0.0 css-loader/locals was removed in favour of onlyLocals option
-        // So adding the option here in replacement as per
-        // https://github.com/webpack-contrib/css-loader/tree/v3.4.2#onlylocals
         loader: require.resolve('css-loader'),
-        options: { ...cssOptions, onlyLocals: true },
+        options: cssOptions,
       },
       {
         // Options for PostCSS as we reference these options twice

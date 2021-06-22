@@ -81,7 +81,7 @@ class MultiCompilerUi {
     return compiler;
   }
 
-  append(name, message) {
+  append(name, message = '') {
     this.output[name] += message + '\n';
     this.render();
   }
@@ -151,6 +151,8 @@ class MultiCompilerUi {
  *
  * @property {string} name
  * @property {CompilerUiOptions} options
+ * @property {MultiCompilerUi} [ui] - When a CompilerUi instance is passed to {@link MultiCompilerUi#register},
+ *                                    the MultiCompilerUi instance is attached.
  */
 class CompilerUi {
   constructor(name, options) {
@@ -252,7 +254,7 @@ class ProcessSendCompilerUi extends CompilerUi {
     super();
   }
 
-  log(message) {
+  log(message = '') {
     process.send(message);
   }
 
@@ -289,7 +291,7 @@ class DebugCompilerUi extends CompilerUi {
     super();
   }
 
-  log(message) {
+  log(message = '') {
     console.log(message);
   }
 

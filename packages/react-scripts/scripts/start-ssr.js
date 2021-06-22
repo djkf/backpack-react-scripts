@@ -216,15 +216,20 @@ checkBrowsers(paths.appPath, isInteractive)
       color: 'bgMagenta',
     });
     ui.register(ssrUi);
-    ssr.on('error', error => console.error(error));
-    // @brs-begin
+
+    ssr.on('exit', code => {
+      ssrUi.log(chalk.red(`Fatal! Process ended with code ${code}`));
+      devServer.close();
+      process.exit();
+    });
+    // @brs-end
 
     ['SIGINT', 'SIGTERM'].forEach(function (sig) {
       process.on(sig, function () {
         devServer.close();
-        process.exit();
         // @brs-begin
         ssr.kill();
+        process.exit();
         // @brs-end
       });
     });
@@ -233,9 +238,9 @@ checkBrowsers(paths.appPath, isInteractive)
       // Gracefully exit when stdin ends
       process.stdin.on('end', function () {
         devServer.close();
-        process.exit();
         // @brs-begin
         ssr.kill();
+        process.exit();
         // @brs-end
       });
     }

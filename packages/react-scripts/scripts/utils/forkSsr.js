@@ -3,6 +3,7 @@
  * be run by child_process.fork from the start-ssr script.
  */
 
+const chalk = require('chalk');
 const fs = require('fs');
 const webpack = require('webpack');
 const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
@@ -56,8 +57,8 @@ compiler.watch(
   },
   err => {
     if (err) {
-      // TODO: Fix this
-      console.log(err.message || err);
+      ui.clear();
+      ui.log(chalk.red('Failed to compile:') + '\n' + (err.message || err));
       process.exit(1);
     }
 
