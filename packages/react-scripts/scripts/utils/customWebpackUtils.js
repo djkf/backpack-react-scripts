@@ -3,7 +3,11 @@ const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const forkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 
-const isInteractive = process.stdout.isTTY;
+/**
+ * We set this to true so that we always call ui.clear() - we check for a TTY
+ * inside {@link MultiCompilerUi}.
+ */
+const isInteractive = true;
 
 /**
  * This function overrides react-dev-utils/WebpackDevServerUtils.createCompiler.
@@ -13,9 +17,12 @@ const isInteractive = process.stdout.isTTY;
  *
  * It is a copy-paste of the source with the following references replaced:
  *
- * - console.log -> ui.log
- * - clearConsole -> ui.clear
- * - printInstructions -> ui.printInstructions
+ * - console.log() -> ui.log()
+ * - clearConsole() -> ui.clear()
+ * - printInstructions() -> ui.printInstructions()
+ *
+ * To update this function in the future when CRA changes, just copy the original
+ * here and make the updates above.
  *
  * @param {CompilerUi} ui
  * @param {Object} config - The same config object passed to CRA's createCompiler

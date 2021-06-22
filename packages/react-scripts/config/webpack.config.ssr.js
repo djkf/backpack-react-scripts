@@ -172,7 +172,7 @@ module.exports = function (webpackEnv) {
         // So adding the option here in replacement as per
         // https://github.com/webpack-contrib/css-loader/tree/v3.4.2#onlylocals
         loader: require.resolve('css-loader'),
-        options: cssOptions,
+        options: { ...cssOptions, onlyLocals: true },
       },
       {
         // Options for PostCSS as we reference these options twice

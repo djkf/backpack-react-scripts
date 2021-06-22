@@ -14,6 +14,8 @@ const isInteractive = process.stdout.isTTY;
  *
  * Several varieties of CompilerUi are provided for different use cases.
  *
+ * See the start-ssr.js script for an example of it in action.
+ *
  * @example
  * const ui = new MultiCompilerUi();
  *
@@ -34,7 +36,15 @@ const isInteractive = process.stdout.isTTY;
  * // No output is generated until start() is called.
  * ui.start();
  *
- * See the start-ssr.js script for an example of it in action.
+ * // The log() method appends output, the clear() method clears it.
+ * simpleUi.log('Some info');
+ * simpleUi.log('More info');
+ * simpleUi.clear();
+ * simpleUi.log('Fresh info');
+ *
+ * // CompilerUi output is independent
+ * customUi.log('woah');
+ * customUi.clear();
  */
 class MultiCompilerUi {
   constructor() {
@@ -79,7 +89,12 @@ class MultiCompilerUi {
 
   clear(name) {
     this.output[name] = '';
-    this.render();
+
+    // Don't render in non-interactive mode, so that we don't spam the console
+    // with empty messages.
+    if (isInteractive) {
+      this.render();
+    }
   }
 
   start() {
