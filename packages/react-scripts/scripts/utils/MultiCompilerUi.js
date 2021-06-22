@@ -56,8 +56,7 @@ class MultiCompilerUi {
    * Create and register a basic CompilerUi.
    *
    * @param {string} name - Used to label the compiler's output in the UI.
-   * @param {Object} options
-   * @param {string} options.color - A chalk method used to style output e.g. yellow, bgBlue
+   * @param {CompilerUiOptions} options
    * @returns {CompilerUi}
    */
   create(name, options = {}) {
