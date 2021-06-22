@@ -205,7 +205,7 @@ class WebCompilerUi extends CompilerUi {
   }
 
   /**
-   * This function is taken directory from react-dev-utils/WebpackDevServerUtils.js,
+   * This function is taken directly from react-dev-utils/WebpackDevServerUtils.js,
    * with all `console.log` references replaced with `this.log`.
    */
   printInstructions() {
