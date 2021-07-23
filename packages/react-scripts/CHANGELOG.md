@@ -18,6 +18,24 @@
 
 - Updated webpack paths to include the new `@skyscanner/bpk` foundations packages.
 
+## 9.3.0
+
+- Apply `cache-loader` on CI
+  - Put `cache-loader` before `sass-loader` since `sass-loader` is the most expensive
+  - Add `SHOULD_USE_CACHE_LOADER` to control if use `cache-loader` or not since not all the web projects at Skyscanner have applied the cache strategy
+
+## 9.2.0
+
+- Added `ignoreCssWarnings` config item to allow the ability to supress CSS ordering issues when its safe to allow mixed order when it has not effect on output. https://github.com/webpack-contrib/mini-css-extract-plugin#remove-order-warnings
+
+## 9.1.3
+
+- Fixed an issue where webpack paths in SSR were not being utilised.
+
+## 9.1.2
+
+- Updated webpack paths to include the new `@skyscanner/bpk` foundations packages.
+
 ## 9.1.1
 
 - Optimize the usage of `thread-loader` to fix `build:storybook` running failed
