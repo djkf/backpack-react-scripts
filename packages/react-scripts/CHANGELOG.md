@@ -9,13 +9,14 @@
 - Added experimental support for https://github.com/mzgoddard/hard-source-webpack-plugin/, enabled by `USE_HARD_SOURCE_WEBPACK_PLUGIN=true` environment variable
 - `web` and `ssr` subpaths for each build's output
 - Output build 'status files' (`.build-status`, one for web, one for SSR), which can be watched by a Node.js server to know when builds are in progress or completed.
+- Enabled SRI for SSR builds and support loadable SRI hashes
 
 ## 9.3.1
 
 - Move `cache-loader` above `resolve-url-loader` to get the best performance
   - Note that there is an overhead for saving the reading and saving the cache file, so only use this loader to cache expensive loaders. It is said that `cache-loader` shouldn't deal with all the loaders and only the expensive parts.
   - Moving `cache-loader` above resolve-url-loader is because cache files it generates after this operation are small and it is faster to read the cache files, and it saves more time than `cache-loader` below resolve-url-loader, we can still speed up the process of compiling sass to css since sass-loader is the most expensive
-      
+
 ## 9.3.0
 
 - Apply `cache-loader` on CI
