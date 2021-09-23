@@ -12,6 +12,9 @@ const createHash = buffer =>
 module.exports = projectName => (...args) => {
   const localIdent = getCSSModuleLocalIdent(...args);
 
+  // Create an ident based on the file location, class name and Project Name.
+  // Will be unique across projects
+  // Format [ file/folder ]_[ localName ]__[ 5 character hash of CRA ident and project name ]
   return (
     localIdent.substring(0, localIdent.length - 5) +
     createHash(localIdent + projectName)
